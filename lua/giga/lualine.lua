@@ -5,7 +5,7 @@ end
 
 lualine.setup {
   options = {
-    theme = "catppuccin",
+    -- theme = "",
     icons_enabled = true,
     component_separators = '|',
     section_separators = { left = '', right = '' },

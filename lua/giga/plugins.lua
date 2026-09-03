@@ -115,8 +115,7 @@ return require ('lazy').setup({
 
 
   { -- better hop motion
-    'phaazon/hop.nvim',
-    branch = 'v2',
+    'Borber/hop.nvim',
     opt = true,
     cmd = 'HopWord',
     config = function()
@@ -199,6 +198,7 @@ return require ('lazy').setup({
   -- treesitter
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = "main",
     dependencies = {
       "windwp/nvim-ts-autotag"
     },
@@ -231,4 +231,14 @@ return require ('lazy').setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { }
   },
+
+  -- pictures in nvim
+  -- {
+  --   '3rd/image.nvim',
+  --   config = function()
+  --     require 'image'.setup({
+  --       backend = "ueberzug"
+  --     })
+  --   end
+  -- }
 })

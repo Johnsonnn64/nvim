@@ -46,6 +46,8 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+vim.g.clipboard = "osc52"
+
 vim.opt.shortmess:append 'cA'
 vim.opt.shortmess:remove 'T'
 -- autocmd BufWritePre * %s/\s\+$//e

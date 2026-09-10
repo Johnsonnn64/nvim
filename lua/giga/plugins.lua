@@ -33,14 +33,6 @@ return require ('lazy').setup({
   'mbbill/undotree', -- undo tree
   { 'lukas-reineke/indent-blankline.nvim', main = "ibl" }, -- line in indentions 
 
-  { -- highlight css color codes
-    'brenoprata10/nvim-highlight-colors',
-    opt = true,
-    ft = { 'css' },
-    config = function()
-      require 'nvim-highlight-colors'.setup {}
-    end
-  },
 
   { -- commenter
     'numToStr/Comment.nvim',
@@ -52,7 +44,15 @@ return require ('lazy').setup({
       { 'gb', mode = 'x' },
     },
     config = function()
-      require 'giga.commenter'
+      require 'Comment'.setup {
+	padding = true,
+	ignore = '^$',
+	sticky = true,
+	mappings = {
+ 	basic = true,
+	extra = true,
+      }
+    }
     end
   },
 
@@ -61,7 +61,16 @@ return require ('lazy').setup({
     opt = true,
     event = { 'InsertEnter', 'CmdlineEnter' },
     config = function()
-      require 'giga.autopair'
+      require 'nvim-autopairs'.setup {
+	fast_wrap = {
+	  map = '<M-e>',
+	  chars = { '{', '[', '(', '"', "'" },
+	  pattern = [=[[%'%"%)%>%]%)%}%,]]=],
+	  check_comma = true,
+	  highlight = 'Search',
+	  highlight_grey='Comment'
+	}
+      }
     end
   },
 
@@ -82,7 +91,14 @@ return require ('lazy').setup({
     cmd = 'TermExec',
     keys = "<c-\\>",
     config = function()
-      require 'giga.toggleterm'
+      require 'toggleterm'.setup {
+	size = 17,
+	open_mapping = [[<c-\>]],
+	direction = "horizontal",
+	float_opts = {
+	  border = "curved"
+  	}
+      }
     end
   },
 
@@ -165,22 +181,22 @@ return require ('lazy').setup({
     }
   },
 
-  {
-    'mfussenegger/nvim-jdtls',
-    ft = 'java',
-  },
+  -- {
+  --   'mfussenegger/nvim-jdtls',
+  --   ft = 'java',
+  -- },
 
-  {
-    'mfussenegger/nvim-dap',
-    dependencies = {
-      'nvim-neotest/nvim-nio',
-      'rcarriga/nvim-dap-ui',
-      'theHamsta/nvim-dap-virtual-text'
-    },
-    config = function()
-      require 'giga.dap'
-    end
-  },
+  -- {
+  --   'mfussenegger/nvim-dap',
+  --   dependencies = {
+  --     'nvim-neotest/nvim-nio',
+  --     'rcarriga/nvim-dap-ui',
+  --     'theHamsta/nvim-dap-virtual-text'
+  --   },
+  --   config = function()
+  --     require 'giga.dap'
+  --   end
+  -- },
 
   { -- telescope
     'nvim-telescope/telescope.nvim', -- fzf
@@ -214,16 +230,24 @@ return require ('lazy').setup({
   { -- notification for nvim
     'rcarriga/nvim-notify',
     config = function()
-      require 'giga.notify'
+      require 'notify'.setup {
+  background_colour = "#000000",
+  top_down = false,
+  render = "compact",
+  stages = "slide",
+  fps = 60,
+      }
+
+vim.notify = require("notify")
     end
   },
 
-  { -- smooth scrolling
-    'karb94/neoscroll.nvim',
-    config = function ()
-      require 'neoscroll'.setup()
-    end
-  },
+  -- { -- smooth scrolling
+  --   'karb94/neoscroll.nvim',
+  --   config = function ()
+  --     require 'neoscroll'.setup()
+  --   end
+  -- },
 
   -- todo comment highlights
   {

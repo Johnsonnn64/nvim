@@ -6,19 +6,9 @@ AC("BufEnter", {
   command = "highlight CursorLine guibg=#2a2b3c | highlight IndentBlanklineChar guifg=#585b70",
   group = AUNVIM
 })
-AC("BufRead", {
-  pattern = "/home/john/personal/school/*",
-  command = "set filetype=markdown",
-  group = AUNVIM
-})
 AC("FileType", {
   pattern = "markdown,org",
   command = "setlocal concealcursor=nc",
-  group = AUNVIM
-})
-AC("BufWritePost", {
-  pattern = "/home/john/workspace/site/*",
-  command = 'silent exec "!rsync -rtvzP ~/workspace/site/ root@johnsonnn.com:/var/www/site"',
   group = AUNVIM
 })
 AC("BufEnter", {
@@ -40,12 +30,5 @@ AC("BufEnter", {
 			vim.api.nvim_command ":silent qa!"
 		end
 	end,
-  group = AUNVIM
-})
-AC("FileType", {
-  pattern = "java",
-  callback = function(args)
-    require'giga.lsp.jdtls_setup'.setup();
-  end,
   group = AUNVIM
 })

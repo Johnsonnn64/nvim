@@ -241,4 +241,4 @@ return require ('lazy').setup({
   --     })
   --   end
   -- }
-})
+}, require("installdoc_shared").lazy_options())

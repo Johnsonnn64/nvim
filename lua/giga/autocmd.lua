@@ -7,7 +7,7 @@ AC("BufEnter", {
   group = AUNVIM
 })
 AC("BufRead", {
-  pattern = "/home/john/personal/school/*",
+  pattern = vim.env.HOME .. "/personal/school/*",
   command = "set filetype=markdown",
   group = AUNVIM
 })
@@ -16,11 +16,14 @@ AC("FileType", {
   command = "setlocal concealcursor=nc",
   group = AUNVIM
 })
-AC("BufWritePost", {
-  pattern = "/home/john/workspace/site/*",
-  command = 'silent exec "!rsync -rtvzP ~/workspace/site/ root@johnsonnn.com:/var/www/site"',
-  group = AUNVIM
-})
+-- Keep the normal-user website workflow out of root sessions.
+--if vim.fn.getuid() ~= 0 then
+--AC("BufWritePost", {
+--  pattern = vim.env.HOME .. "/workspace/site/*",
+--  command = 'silent exec "!rsync -rtvzP ~/workspace/site/ root@johnsonnn.com:/var/www/site"',
+--  group = AUNVIM
+--})
+--end
 AC("BufEnter", {
   pattern = "*",
   command = "set formatoptions-=cro",
